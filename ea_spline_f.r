@@ -1,5 +1,6 @@
 #EA_spline function
-ea_spline<- function(mxd,ndata,dat,lam,d,s){
+ea_spline<- function(mxd,dat,lam,d){
+ndata=length(levels(as.factor(dat[,1])))
 
 # matrix of the continous splines for each data point
 m_fyfit<- matrix(NA,ncol=length(c(0:mxd)),nrow=ndata)
@@ -16,8 +17,12 @@ sset<- matrix(NA,ncol=length(lam),nrow=ndata)
 # Matrix profile ids
 mat_id<- matrix(NA,ncol=1,nrow=ndata)
 
+# number of data
+
+
 nl<- length(lam)  # Length of the lam matrix
 
+s<- 0.05*mean(dat[,4])  # 5% of the standard deviation of the target attribute 
 s2= s*s   # overall variance of soil attribute
     ##########################################################################################################  
 d.dat<- as.data.frame(dat)
